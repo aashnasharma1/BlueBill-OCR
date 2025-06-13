@@ -1,17 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Dashboard from './components/dashboard/Dashboard';
+import Invoice from './components/invoices/invoice';
+import AppLayout from './components/layout/appLayout'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Ledgers from './components/ledgers/ledgers';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element:<AppLayout  />,
+      children:[
+        {
+          path:"/",
+          element:<Dashboard/>
+        },
+        {
+          path:"/allInvoices",
+          element:<Invoice/>
+        },
+        {
+          path:"/ledgers",
+          element:<Ledgers/>
+        }
+      ]
+    }
+  ])
 
-  return (
-    <>
-    <div className='text-pink-600'>aashna</div>
-      hello world
-    </>
-  )
+  return <RouterProvider router = {router} />
 }
 
 export default App

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] },
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*",
+    "vite.config.js"
+  ],
+  "exclude": []
+}
