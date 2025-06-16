@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import FileProcessor from '../fileProcessor/FileProcessor'
 
 export default function UploadInvoice({isOpen, setOpen}) {
 
@@ -22,7 +23,7 @@ export default function UploadInvoice({isOpen, setOpen}) {
                   <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-6">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <DialogTitle className="text-base font-semibold text-gray-900">Panel title</DialogTitle>
+                        <DialogTitle className="text-base font-semibold text-gray-900">Upload Invoice</DialogTitle>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -36,7 +37,7 @@ export default function UploadInvoice({isOpen, setOpen}) {
                         </div>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6"><FileProcessor /></div>
                   </div>
                   <div className="flex shrink-0 justify-end px-4 py-4">
                     <button
@@ -50,7 +51,7 @@ export default function UploadInvoice({isOpen, setOpen}) {
                       type="submit"
                       className="ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
-                      Save
+                      Upload
                     </button>
                   </div>
                 </div>
