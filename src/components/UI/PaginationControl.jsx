@@ -25,7 +25,8 @@ export const PaginationControls = ({
   onPageChange,
   onItemsPerPageChange,
   showDownload,
-  itemsPerPageOptions = [10, 20, 50, 100],
+  itemsPerPageOptions = [10, 20, 50, 100, 105],
+
 }) => {
   const [gotoPage, setGotoPage] = useState("");
   const totalPages = Math.ceil(totalItems / itemsPerPage);
