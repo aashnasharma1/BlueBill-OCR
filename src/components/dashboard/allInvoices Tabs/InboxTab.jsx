@@ -6,7 +6,7 @@ import {
     Search,
     Settings,
 } from 'lucide-react'
-import { PaginationControls } from '@/components/UI/PaginationControl'
+import { PaginationControls } from '@/components/ui/PaginationControl'
 
 const inboxData = [
     {

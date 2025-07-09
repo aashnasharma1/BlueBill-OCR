@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { RefreshCcw, Search } from 'lucide-react';
-import { PaginationControls } from '@/components/UI/PaginationControl';
+import { PaginationControls } from '@/components/ui/PaginationControl';
 
 const coaData = [
   { accountId: 'A123', accountName: 'Sales Account', created_at: 'Feb. 22, 2025, 10:09 p.m.' },

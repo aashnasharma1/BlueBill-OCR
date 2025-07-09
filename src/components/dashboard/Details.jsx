@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ToggleRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Invoice from '../../assets/Invoice-Format.webp';
 import ActionButtons from "./ActionButtons";
 
 const Details = () => {
+    const imageRef = useRef();
+
     return (
         <main className="h-[calc(100vh-64px)] overflow-y-auto">
             <div className=" sm:p-6">
@@ -30,9 +32,9 @@ const Details = () => {
                         <button className="text-gray-400 hover:text-black transition flex items-center gap-1">
                             <span><ChevronLeft size={16} /></span>  Previous
                         </button>
-                        <span className="text-black">1 / 90</span>
+                        <span className="text-black">1 / 54</span>
                         <button className="text-black hover:text-black transition flex items-center gap-1">
-                            Next <span><ChevronRight size={16} /></span> 
+                            Next <span><ChevronRight size={16} /></span>
                         </button>
                     </div>
                 </div>
@@ -41,13 +43,15 @@ const Details = () => {
                 {/* Main Layout */}
                 <div className="flex flex-col lg:flex-row gap-4">
                     {/* Left: Invoice Preview */}
-                    <div className="flex-1 bg-white p-6 rounded shadow flex justify-center items-center">
+                    <div className="flex-1 bg-white p-6 rounded shadow relative overflow-hidden flex justify-center items-center">
                         <img
+                            ref={imageRef}
                             src={Invoice}
                             alt="Invoice Preview"
-                            className="w-full max-w-[650px] rounded border"
+                            className="absolute max-w-[100%] max-h-full rounded border transition-transform duration-300"
+                            id="invoice-image"
                         />
-                        <ActionButtons />
+                        <ActionButtons imageRef={imageRef} />
                     </div>
 
                     {/* Right: Details Panel */}
