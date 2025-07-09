@@ -7,9 +7,9 @@ const AppLayout = () => {
     return (
         <>
             <Navbar />
-            <div className='flex h-[calc(100vh - 64px)] overflow-y-scroll '>
+            <div className='flex h-[calc(100vh - 64px)]'>
                 <Sidebar />
-                <div className='w-[100%]'>
+                <div className='w-[100%] '>
                     <Outlet />
                 </div>
             </div>

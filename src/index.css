@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 
 
-html{
-  overflow:hidden;
+html {
+  overflow: hidden;
 }
 
 /* @custom-variant dark (&:is(.dark *)); */
@@ -125,7 +125,8 @@ button:focus-visible {
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: oklch(58.392% 0.00609 16.733);
+  --text-muted: oklch(0.556 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
@@ -146,7 +147,13 @@ button:focus-visible {
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: oklch(97.015% 0.00011 271.152);
+  --navbar-border: oklch(45.767% 0.21763 273.146);
+  --navbar-background: oklch(95.141% 0.02421 285.873);
+  --navbar-background-hover: oklch(97.614% 0.00011 271.152 / 0.844);
+  --navbar-text-hover: oklch(40.75% 0.015 264 / 1);
+
+
 }
 
 .dark {
@@ -159,7 +166,8 @@ button:focus-visible {
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  --secondary-foreground: oklch(63.862% 0.00716 16.787);
+  --text-muted: oklch(0.35 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
@@ -180,13 +188,18 @@ button:focus-visible {
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(32.504% 0.00004 271.152);
+  --navbar-background: oklch(33.7% 0.02 264 / 0.95);
+  --navbar-background-hover: oklch(33.7% 0.02 264 / 0.95);
+  --navbar-text-hover: oklch(85.5% 0.005 270 / 1);
+
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -214,4 +227,32 @@ button:focus-visible {
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.439 0 0);
   }
+}
+
+@layer utilities {
+  .text-gray-500 {
+    color: var(--text-muted) !important;
+  }
+
+  .bg-gray-50 {
+    background-color: var(--card) !important;
+  }
+
+  .text-gray-700 {
+    color: oklch(59.749% 0.00606 16.71);
+  }
+
+  .bg-white {
+    background-color: var(--card) !important;
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .bg-sidebar-ring {
+    background-color: var(--sidebar-ring);
+  }
+
+
 }

@@ -19,11 +19,11 @@ export default function UploadInvoice({isOpen, setOpen}) {
                 transition
                 className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700"
               >
-                <div className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                <div className="flex h-full flex-col divide-y divide-[--border] bg-white shadow-xl">
                   <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-6">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <DialogTitle className="text-base font-semibold text-gray-900">Upload Invoice</DialogTitle>
+                        <DialogTitle className="text-base font-semibold text-primary">Upload</DialogTitle>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -43,7 +43,7 @@ export default function UploadInvoice({isOpen, setOpen}) {
                     <button
                       type="button"
                       onClick={() => setOpen()}
-                      className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:ring-gray-400"
+                      className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-primary shadow-xs ring-1 ring-gray-300 ring-inset hover:ring-gray-400"
                     >
                       Cancel
                     </button>

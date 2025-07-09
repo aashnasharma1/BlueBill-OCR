@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {
   ArrowDownCircleIcon,
@@ -117,23 +117,24 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
+export default function Main() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openDrawer, setOpenDrawer] = useState(false)
 
+
   return (
     <>
-      
 
       <main className='h-[calc(100vh-64px)] overflow-y-auto'>
+      
         <div className="relative isolate overflow-hidden ">
           {/* Secondary navigation */}
           <header className="pt-6 pb-4 sm:pb-6">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
-              <h1 className="text-base/7 font-semibold text-gray-900">Cashflow</h1>
+            <h1 className="text-base/7 font-semibold">Cashflow</h1>
               <div className="order-last flex w-full gap-x-8 text-sm/6 font-semibold sm:order-0 sm:w-auto sm:border-l sm:border-gray-200 sm:pl-6 sm:text-sm/7">
                 {secondaryNavigation.map((item) => (
-                  <a key={item.name} href={item.href} className={item.current ? 'text-indigo-600' : 'text-gray-700'}>
+                  <a key={item.name} href={item.href} className={item.current ? 'text-indigo-600' : 'text-[--secondary-foreground]'}>
                     {item.name}
                   </a>
                 ))}
@@ -160,7 +161,7 @@ export default function Dashboard() {
                     'flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8',
                   )}
                 >
-                  <dt className="text-sm/6 font-medium text-gray-500">{stat.name}</dt>
+                  <dt className="text-sm/6 font-medium text-[--text-muted]">{stat.name}</dt>
                   <dd
                     className={classNames(
                       stat.changeType === 'negative' ? 'text-rose-600' : 'text-gray-700',
@@ -169,7 +170,7 @@ export default function Dashboard() {
                   >
                     {stat.change}
                   </dd>
-                  <dd className="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">
+                  <dd className="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-500">
                     {stat.value}
                   </dd>
                 </div>
@@ -195,11 +196,11 @@ export default function Dashboard() {
           {/* Recent activity table */}
           <div>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h2 className="mx-auto max-w-2xl text-base font-semibold text-gray-900 lg:mx-0 lg:max-w-none">
+              <h2 className="mx-auto max-w-2xl text-base font-semibold text-gray-600 lg:mx-0 lg:max-w-none">
                 Recent activity
               </h2>
             </div>
-            <div className="mt-6 overflow-hidden border-t border-gray-100">
+            <div className="mt-6 overflow-hidden border-t border-[--border]">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
                   <table className="w-full text-left">
@@ -215,9 +216,9 @@ export default function Dashboard() {
                         <Fragment key={day.dateTime}>
                           <tr className="text-sm/6 text-gray-900">
                             <th scope="colgroup" colSpan={3} className="relative isolate py-2 font-semibold">
-                              <time dateTime={day.dateTime}>{day.date}</time>
-                              <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50" />
-                              <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50" />
+                              <time dateTime={day.dateTime} className="text-primary">{day.date}</time>
+                              <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-[--border] bg-gray-50" />
+                              <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-[--border] bg-gray-50" />
                             </th>
                           </tr>
                           {day.transactions.map((transaction) => (
@@ -230,7 +231,7 @@ export default function Dashboard() {
                                   />
                                   <div className="flex-auto">
                                     <div className="flex items-start gap-x-3">
-                                      <div className="text-sm/6 font-medium text-gray-900">{transaction.amount}</div>
+                                      <div className="text-sm/6 font-medium text-primary">{transaction.amount}</div>
                                       <div
                                         className={classNames(
                                           statuses[transaction.status],
@@ -241,16 +242,15 @@ export default function Dashboard() {
                                       </div>
                                     </div>
                                     {transaction.tax ? (
-                                      <div className="mt-1 text-xs/5 text-gray-500">{transaction.tax} tax</div>
+                                      <div className="mt-1 text-xs/5 text-gray-400">{transaction.tax} tax</div>
                                     ) : null}
                                   </div>
                                 </div>
-                                <div className="absolute right-full bottom-0 h-px w-screen bg-gray-100" />
-                                <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100" />
+                                
                               </td>
                               <td className="hidden py-5 pr-6 sm:table-cell">
-                                <div className="text-sm/6 text-gray-900">{transaction.client}</div>
-                                <div className="mt-1 text-xs/5 text-gray-500">{transaction.description}</div>
+                                <div className="text-sm/6 text-primary">{transaction.client}</div>
+                                <div className="mt-1 text-xs/5 text-gray-400">{transaction.description}</div>
                               </td>
                               <td className="py-5 text-right">
                                 <div className="flex justify-end">
@@ -264,8 +264,8 @@ export default function Dashboard() {
                                     </span>
                                   </a>
                                 </div>
-                                <div className="mt-1 text-xs/5 text-gray-500">
-                                  Invoice <span className="text-gray-900">#{transaction.invoiceNumber}</span>
+                                <div className="mt-1 text-xs/5 text-gray-400">
+                                  Invoice <span className="text-primary">#{transaction.invoiceNumber}</span>
                                 </div>
                               </td>
                             </tr>
@@ -283,7 +283,7 @@ export default function Dashboard() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <div className="flex items-center justify-between">
-                <h2 className="text-base/7 font-semibold text-gray-900">Recent clients</h2>
+                <h2 className="text-base/7 font-semibold text-primary">Recent clients</h2>
                 <a href="#" className="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-500">
                   View all<span className="sr-only">, clients</span>
                 </a>
@@ -297,7 +297,7 @@ export default function Dashboard() {
                         src={client.imageUrl}
                         className="size-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10"
                       />
-                      <div className="text-sm/6 font-medium text-gray-900">{client.name}</div>
+                      <div className="text-sm/6 font-medium text-primary">{client.name}</div>
                       <Menu as="div" className="relative ml-auto">
                         <MenuButton className="-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500">
                           <span className="sr-only">Open options</span>
@@ -310,7 +310,7 @@ export default function Dashboard() {
                           <MenuItem>
                             <a
                               href="#"
-                              className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden"
+                              className="block px-3 py-1 text-sm/6 text-primary data-focus:bg-gray-50 data-focus:outline-hidden"
                             >
                               View<span className="sr-only">, {client.name}</span>
                             </a>
@@ -318,7 +318,7 @@ export default function Dashboard() {
                           <MenuItem>
                             <a
                               href="#"
-                              className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden"
+                              className="block px-3 py-1 text-sm/6 text-primary data-focus:bg-gray-50 data-focus:outline-hidden"
                             >
                               Edit<span className="sr-only">, {client.name}</span>
                             </a>
@@ -328,15 +328,15 @@ export default function Dashboard() {
                     </div>
                     <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                       <div className="flex justify-between gap-x-4 py-3">
-                        <dt className="text-gray-500">Last invoice</dt>
+                        <dt className="text-gray-400">Last invoice</dt>
                         <dd className="text-gray-700">
                           <time dateTime={client.lastInvoice.dateTime}>{client.lastInvoice.date}</time>
                         </dd>
                       </div>
                       <div className="flex justify-between gap-x-4 py-3">
-                        <dt className="text-gray-500">Amount</dt>
+                        <dt className="text-gray-400">Amount</dt>
                         <dd className="flex items-start gap-x-2">
-                          <div className="font-medium text-gray-900">{client.lastInvoice.amount}</div>
+                          <div className="font-medium text-primary">{client.lastInvoice.amount}</div>
                           <div
                             className={classNames(
                               statuses[client.lastInvoice.status],

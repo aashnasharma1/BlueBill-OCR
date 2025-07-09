@@ -1,19 +1,35 @@
+import React, { useState, useEffect } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Moon, Sun } from 'lucide-react';
 
 export default function Navbar() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Load saved theme from localStorage on mount
+  useEffect(() => {
+    const dark = localStorage.getItem('theme') === 'dark';
+    setIsDarkMode(dark);
+    document.documentElement.classList.toggle('dark', dark);
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    const nextMode = !isDarkMode;
+    setIsDarkMode(nextMode);
+    document.documentElement.classList.toggle('dark', nextMode);
+    localStorage.setItem('theme', nextMode ? 'dark' : 'light');
+  };
+
   return (
-    <Disclosure as="nav" className="bg-white shadow-sm">
-      <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8">
+    <Disclosure as="nav" className="shadow-sm border border-[--border]">
+      <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8 ">
         <div className="flex h-16 justify-between">
           <div className="flex">
             <div className="flex shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+              <a href="/" className="text-lg font-bold text-indigo-600 dark:text-indigo-400">BillMunshi</a>
             </div>
+
             {/* <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <a
                 href="#"
@@ -42,14 +58,26 @@ export default function Navbar() {
             </div> */}
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <button
-              type="button"
-              className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={toggleDarkMode}
+                className="relative rounded-full  dark:bg-zinc-800 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
+              >
+                <span className="sr-only">Toggle dark mode</span>
+                {isDarkMode ? <Sun className="size-6" /> : <Moon className="size-6" />}
+              </button>
+
+
+              <button
+                type="button"
+                className="relative rounded-full  p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+              >
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only">View notifications</span>
+                <BellIcon aria-hidden="true" className="size-6" />
+              </button>
+            </div>
+
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
@@ -107,34 +135,34 @@ export default function Navbar() {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="sm:hidden fixed top-16 left-0 w-full z-[100] bg-white shadow-lg">
         <div className="space-y-1 pt-2 pb-3">
           {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
           <DisclosureButton
             as="a"
             href="#"
-            className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
+            className="block border-l-4 border-[var(--navbar-border)] bg-[var(--navbar-background)] py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
           >
             Dashboard
           </DisclosureButton>
           <DisclosureButton
             as="a"
             href="#"
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-400 hover:border-gray-300 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
           >
             Team
           </DisclosureButton>
           <DisclosureButton
             as="a"
             href="#"
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-400 hover:border-gray-300 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
           >
             Projects
           </DisclosureButton>
           <DisclosureButton
             as="a"
             href="#"
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-400 hover:border-gray-300 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
           >
             Calendar
           </DisclosureButton>
@@ -149,8 +177,8 @@ export default function Navbar() {
               />
             </div>
             <div className="ml-3">
-              <div className="text-base font-medium text-gray-800">Tom Cook</div>
-              <div className="text-sm font-medium text-gray-500">tom@example.com</div>
+              <div className="text-base font-medium text-gray-400">Tom Cook</div>
+              <div className="text-sm font-medium text-gray-400">tom@example.com</div>
             </div>
             <button
               type="button"
@@ -160,26 +188,33 @@ export default function Navbar() {
               <span className="sr-only">View notifications</span>
               <BellIcon aria-hidden="true" className="size-6" />
             </button>
+            <button
+              onClick={toggleDarkMode}
+              className="relative rounded-full  dark:bg-zinc-800 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
+            >
+              <span className="sr-only">Toggle dark mode</span>
+              {isDarkMode ? <Sun className="size-6" /> : <Moon className="size-6" />}
+            </button>
           </div>
           <div className="mt-3 space-y-1">
             <DisclosureButton
               as="a"
               href="#"
-              className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+              className="block px-4 py-2 text-base font-medium text-gray-400 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
             >
               Your Profile
             </DisclosureButton>
             <DisclosureButton
               as="a"
               href="#"
-              className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+              className="block px-4 py-2 text-base font-medium text-gray-400 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
             >
               Settings
             </DisclosureButton>
             <DisclosureButton
               as="a"
               href="#"
-              className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+              className="block px-4 py-2 text-base font-medium text-gray-400 hover:bg-[var(--navbar-background-hover)] hover:text-[var(--navbar-text-hover)]"
             >
               Sign out
             </DisclosureButton>
