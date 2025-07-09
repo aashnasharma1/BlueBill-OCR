@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { CloudDownload, ImageDown, Search, X, Eye, ShieldCheck, Trash2, TextSearch, ArrowLeft } from 'lucide-react';
-import { PaginationControls } from '@/components/ui/PaginationControl';
+import { PaginationControls } from '@/components/UI/PaginationControl';
 import Invoice from '../../assets/Invoice-Format.webp';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@/components/UI/separator';
 
 const statuses = ['Drafts', 'Analyzed', 'Synced'];
 const bills = Array.from({ length: 99 }, (_, i) => {

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import { Plus, RefreshCcw, Search } from 'lucide-react'
-import { PaginationControls } from '@/components/ui/PaginationControl'
 import AddWorkspace from './workspace/AddWorkspace';
+import { PaginationControls } from '../UI/PaginationControl';
 
 const baseData = [
     {

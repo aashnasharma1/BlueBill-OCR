@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/UI/button";
 import {
   Pagination,
   PaginationContent,
@@ -8,14 +8,14 @@ import {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-} from "@/components/ui/pagination";
+} from "@/components/UI/pagination";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
+} from "@/components/UI/select";
 import { Download } from "lucide-react";
 
 export const PaginationControls = ({

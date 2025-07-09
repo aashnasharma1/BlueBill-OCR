@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { RefreshCcw, Search } from 'lucide-react';
-import { PaginationControls } from '@/components/ui/PaginationControl';
+import { PaginationControls } from '@/components/UI/PaginationControl';
 
 const taxesData = [
     {
