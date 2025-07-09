@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Download, RotateCw, ZoomIn, ZoomOut, Maximize } from "lucide-react";
+import { Download, RotateCw, ZoomIn, ZoomOut, Maximize2, Plus } from "lucide-react";
 import Invoice from "../../assets/Invoice-Format.webp";
 
 const ActionButtons = () => {
@@ -25,9 +25,9 @@ const ActionButtons = () => {
       <button onClick={handleZoomOut} title="Zoom Out">
         <ZoomOut size={18} />
       </button>
-      <span className="text-xs text-center text-gray-700">{Math.round(zoom * 100)}%</span>
+      <span className="text-xs text-center text-gray-900">{Math.round(zoom * 100)}%</span>
       <button onClick={handleZoomIn} title="Zoom In">
-        <ZoomIn size={18} />
+        <Plus size={18} />
       </button>
       <button onClick={handleRotate} title="Rotate">
         <RotateCw size={18} />
@@ -36,7 +36,7 @@ const ActionButtons = () => {
         <Download size={18} />
       </button>
       <button onClick={handleFullscreen} title="Fullscreen">
-        <Maximize size={18} />
+        <Maximize2 size={18} />
       </button>
     </div>
   );
